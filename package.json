@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-   "start": "node backend/index.js",
-    "server": "nodemon backend/index.js",
+   "start": "node index.js",
+    "server": "nodemon index.js",
     "build": "npm install --legacy-peer-deps && npm install --legacy-peer-deps --prefix frontend && npm run build --prefix frontend"
   },
   "author": "",
