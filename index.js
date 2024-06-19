@@ -5,7 +5,7 @@ const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
-const path = require("path");
+const cors = require("cors")
 
 dotenv.config();
 connectDB();
@@ -36,10 +36,17 @@ const server = app.listen(
     console.log(`http://localhost:${PORT}`.yellow.bold)
 );
 
+app.use(cors(
+    {
+        origin: "http://localhost:3000",
+        credentials: true
+    }
+))
+
 const io = require("socket.io")(server, {
     pingTimeout: 60000,
     cors: {
-        origin: "https://chat-okt-1.onrender.com",
+        origin: "http://localhost:3000",
         credentials: true,
     },
 });
