@@ -6,7 +6,7 @@ const generateToken = require("../config/generateToken");
 // @route       POST /api/users
 // @access      Public
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, pic } = req.body;
 
     const userExists = await User.findOne({ email });
 
@@ -15,10 +15,12 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new Error("User already exists");
     }
 
+
     const user = await User.create({
         name,
         email,
         password,
+        pic: pic || "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
     });
 
     if (user) {
@@ -26,6 +28,7 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            pic: user.pic,
             token: generateToken(user._id),
         });
     } else {
@@ -47,6 +50,7 @@ const authUser = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            pic: user.pic,
             token: generateToken(user._id),
         });
     } else {
