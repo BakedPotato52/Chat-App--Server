@@ -6,20 +6,18 @@ const User = require("../models/userModel");
 // @route       POST /api/chats
 // @access      Protected
 const createChat = asyncHandler(async (req, res) => {
-    const { chatName, isGroupChat, users } = req.body;
+    const { users } = req.body;
 
-    if (!chatName || !users) {
+    if (!users || !users.length) {
         res.status(400);
         throw new Error("Please provide all required fields");
     }
 
-    const chat = await Chat.create({
-        chatName,
-        isGroupChat,
+    const chats = await Chat.create({
         users,
     });
 
-    res.status(201).json(chat);
+    res.status(201).json(chats);
 });
 
 // @description Get all chats for a user
@@ -32,6 +30,7 @@ const getChats = asyncHandler(async (req, res) => {
 
     res.status(200).json(chats);
 });
+
 
 //@description     Create New Group Chat
 //@route           POST /api/chat/group

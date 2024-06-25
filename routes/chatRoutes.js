@@ -10,7 +10,8 @@ const { protect } = require("../middleware/authMiddleware");
 
 const chatRouter = express.Router();
 
-chatRouter.route("/").post(protect, createChat).get(protect, getChats);
+chatRouter.route("/").post(protect, createChat)
+chatRouter.route("/").get(protect, getChats);
 chatRouter.route("/group").post(protect, createGroupChat);
 chatRouter.route("/rename").put(protect, renameGroup);
 chatRouter.route("/groupremove").put(protect, removeFromGroup);
