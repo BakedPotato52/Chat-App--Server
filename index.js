@@ -12,9 +12,14 @@ connectDB();
 
 const app = express();
 
-app.use(express.json()); // to accept json data
+app.use(express.json()); // to accept JSON data
+
 app.use(cors({
-    origin: "https://chat-okt.vercel.app",
+    origin: [
+        "https://chat-okt.vercel.app",
+        "https://chat-okt-bakedpotato52s-projects.vercel.app",
+        "https://chat-okt-git-main-bakedpotato52s-projects.vercel.app"
+    ],
     methods: ["GET", "POST"],
     credentials: true
 }));
@@ -41,7 +46,11 @@ const server = app.listen(
 const io = require("socket.io")(server, {
     pingTimeout: 60000,
     cors: {
-        origin: "http://localhost:3000",
+        origin: [
+            "https://chat-okt.vercel.app",
+            "https://chat-okt-bakedpotato52s-projects.vercel.app",
+            "https://chat-okt-git-main-bakedpotato52s-projects.vercel.app"
+        ],
         credentials: true,
     },
 });
@@ -73,7 +82,7 @@ io.on("connection", (socket) => {
         });
     });
 
-    socket.off("setup", () => {
+    socket.off("setup", (userData) => {
         console.log("USER DISCONNECTED");
         socket.leave(userData._id);
     });
