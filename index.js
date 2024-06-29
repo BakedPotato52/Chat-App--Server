@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.json()); // to accept json data
 app.use(cors({
-    origin: "https://main--chat-okt.netlify.app",
+    origin: "https://chat-okt.vercel.app",
     methods: ["GET", "POST"],
     credentials: true
 }));
