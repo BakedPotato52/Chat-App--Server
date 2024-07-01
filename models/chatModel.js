@@ -6,5 +6,8 @@ const chatSchema = mongoose.Schema({
     chatAdmin: { type: Boolean, default: false },
 }, { timestamps: true });
 
+// Index to quickly find chats by users
+chatSchema.index({ users: 1 });
+
 const Chat = mongoose.model("Chat", chatSchema);
 module.exports = Chat;
