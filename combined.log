@@ -23,3 +23,4 @@
 {"level":"warn","message":"404 Not Found: /chats"}
 {"level":"error","message":"Not Found - /chats","stack":"🥞","url":"/chats"}
 {"level":"info","message":"Chats retrieved for user 666e8c8bf607812606e715f8"}
+{"level":"info","message":"\u001b[4m\u001b[36mMongoDB Connected: ac-vv8jtqe-shard-00-00.jmfthol.mongodb.net\u001b[39m\u001b[24m"}
